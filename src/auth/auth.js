@@ -25,23 +25,24 @@ export default class Auth {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
-        history.replace('/');
+        history.replace('/config');
       } else if (err) {
-        history.replace('/');
+        history.replace('/config');
         console.log(err);
       }
     });
   }
 
   setSession(authResult) {
+    console.log(authResult);
     // Set the time that the Access Token will expire at
+    localStorage.setItem('sub', authResult.idTokenPayload.sub);    
     let expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
-    localStorage.setItem('sub', authResult.idTokenPayload.sub);
     // navigate to the home route
-    history.replace('/');
+    history.replace('/config');
   }
 
   logout() {
@@ -51,7 +52,7 @@ export default class Auth {
     localStorage.removeItem('expires_at');
     localStorage.removeItem('sub');
     // navigate to the home route
-    history.replace('/');
+    history.push('/');
   }
 
   isAuthenticated() {

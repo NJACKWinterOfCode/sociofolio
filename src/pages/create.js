@@ -52,7 +52,7 @@ class Create extends React.Component {
         })
         .then(data => {
             console.log(data);
-            this.props.history.push("/");
+            this.props.history.push("/profile");
         })
     }
 
@@ -82,37 +82,6 @@ class Create extends React.Component {
         
         return (
             <>
-            <Menu inverted stackable>
-                <Menu.Item>
-                <img src='https://cdn4.iconfinder.com/data/icons/logos-3/600/React.js_logo-512.png' />
-                </Menu.Item>
-
-                <Menu.Item
-                name='features'
-                active={activeItem === 'features'}
-                onClick={this.handleItemClick}
-                >
-                Features
-                </Menu.Item>
-
-                <Menu.Item
-                name='testimonials'
-                active={activeItem === 'testimonials'}
-                onClick={this.handleItemClick}
-                >
-                Testimonials
-                </Menu.Item>
-
-                <Menu.Item
-                name='sign-in'
-                active={activeItem === 'sign-in'}
-                onClick={this.props.auth.login}
-                position="right"
-                >
-                Sign-in
-                </Menu.Item>
-            </Menu>
-            <Container style={{width:"40%"}}>
                 <Card style={{padding:"2%"}} centered fluid>
                 <Form>
                     {this.state.urls.map((item,index)=>{
@@ -141,7 +110,6 @@ class Create extends React.Component {
                 <Button secondary onClick={this.addMore}>Add</Button><br/>
                 <Button primary onClick={this.submit}>Create</Button>
                 </Card>
-            </Container>
             </>
         )
     }

@@ -6,6 +6,11 @@ import Auth from './auth/auth';
 import Callback from './pages/callback';
 import client from "./apollo";
 import { ApolloProvider } from "react-apollo";
+import Config from './pages/config';
+import Profile from './pages/profile';
+import {  List, Card, Icon, Image, Menu,Container } from 'semantic-ui-react';
+import Page from './pages/page';
+import history from './history';
 
 import {
   BrowserRouter as Router,
@@ -21,19 +26,92 @@ const handleAuthentication = (nextState, replace) => {
   }
 }
 
-const App = () => {
-  return (
-    <ApolloProvider client={client}>
-    <Switch>
-            <Route exact path="/create" render={(props)=><Create auth={auth} {...props}/>}/>
-            <Route path="/callback" render={(props) => {
-              handleAuthentication(props);
-              return <Callback {...props} />
-            }} />
-            <Route exact path="/" component={Index}/>
-    </Switch>
-    </ApolloProvider>
-  )
+const activeItem="features";
+
+const handleItemClick=()=>{
+
 }
+
+class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state={
+    };
+  }
+
+  componentDidMount(){
+    if(localStorage.getItem("sub")){
+      this.setState({loggedIn:true});
+    }
+  }
+
+  render(){
+    return (
+      <>
+                <Menu inverted stackable>
+                  <Menu.Item>
+                  <img src='https://cdn4.iconfinder.com/data/icons/logos-3/600/React.js_logo-512.png' />
+                  </Menu.Item>
+  
+                  {this.state.loggedIn?
+                  <Menu.Menu position='right'>
+                    <Menu.Item
+                    name='create'
+                    active={activeItem === 'create'}
+                    onClick={()=>history.replace('/create')}
+                    >
+                    Add Link
+                    </Menu.Item>
+                    <Menu.Item
+                    name='profile'
+                    active={activeItem === 'profile'}
+                    onClick={()=>history.replace('/profile')}
+                    >
+                    Profile
+                    </Menu.Item>
+                    <Menu.Item
+                    name='sign-out'
+                    active={activeItem === 'sign-out'}
+                    onClick={()=>{
+                      auth.logout();
+                      this.setState({loggedIn:false});
+                    }}
+                    >
+                    Sign Out
+                    </Menu.Item>
+                  </Menu.Menu>
+                  :
+                  <Menu.Item
+                  name='sign-in'
+                  active={activeItem === 'sign-in'}
+                  onClick={()=>{
+                    auth.login();
+                  }}
+                  position="right"
+                  >
+                  Sign-in
+                  </Menu.Item>
+                  }
+              </Menu>
+              <Container>
+                <ApolloProvider client={client}>
+                <Switch>
+                        <Route exact path="/create" render={(props)=><Create auth={auth} {...props}/>}/>
+                        <Route exact path="/config" render={(props)=><Config auth={auth} {...props}/>}/>
+                        <Route exact path="/profile" render={(props)=><Profile auth={auth} {...props}/>}/>
+                        <Route path="/callback" render={(props) => {
+                          handleAuthentication(props);
+                          return <Callback {...props} />
+                        }} />
+                        <Route exact path="/:name" render={(props)=><Page auth={auth} {...props}/>}/>
+                        <Route exact path="/" render={(props)=><Index auth={auth} {...props}/>}/>
+                </Switch>
+                </ApolloProvider>
+              </Container>
+        </>
+    )
+  }
+}
+
 
 export default App;
