@@ -72,7 +72,8 @@ class Create extends React.Component {
                 <Menu.Item
                 name='sign-in'
                 active={activeItem === 'sign-in'}
-                onClick={this.handleItemClick}
+                onClick={this.props.auth.login}
+                position="right"
                 >
                 Sign-in
                 </Menu.Item>
