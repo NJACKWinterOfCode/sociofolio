@@ -16,10 +16,44 @@ class Create extends React.Component {
         this.onNameChange = this.onNameChange.bind(this);
         this.onUrlChange = this.onUrlChange.bind(this);
         this.addMore = this.addMore.bind(this);
+        this.submit = this.submit.bind(this);
     }
 
     handleItemClick(){
 
+    }
+
+    submit(){
+        let urls = this.state.urls;
+        urls.map((item,index)=>{
+            urls[index].user=localStorage.getItem("sub");
+        })
+        console.log(urls);
+        fetch('https://hasuragraphql-engine.herokuapp.com/v1alpha1/graphql', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+            query: `mutation ($urls: [sociofolio_insert_input!]!) {
+                insert_sociofolio(objects: $urls) {
+                    returning {
+                        id
+                    }
+                }
+            }`,
+            variables: {
+                urls: urls
+            }
+            }),
+        })
+        .then(response => {
+            return response.json()
+        })
+        .then(data => {
+            console.log(data);
+            this.props.history.push("/");
+        })
     }
 
     onUrlChange(e,index){
@@ -105,7 +139,7 @@ class Create extends React.Component {
                     })}
                 </Form>
                 <Button secondary onClick={this.addMore}>Add</Button><br/>
-                <Button primary onClick={this.addMore}>Create</Button>
+                <Button primary onClick={this.submit}>Create</Button>
                 </Card>
             </Container>
             </>

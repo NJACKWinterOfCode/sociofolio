@@ -1,10 +1,56 @@
 import React from 'react';
 import {  List, Card, Icon, Image, Menu,Container } from 'semantic-ui-react';
 
+const icons = {
+        "default":"world",
+        "Github":"github",
+        "Facebook":"facebook",
+        "Twitter":"twitter",
+        "Gmail":"mail",
+        "Behance":"behance",
+        "Youtube":"youtube"
+    };
+
 class Index extends React.Component {
     constructor(props){
         super(props);
         this.state={};
+    }
+
+    componentDidMount(){
+        fetch('https://hasuragraphql-engine.herokuapp.com/v1alpha1/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: `query ($user: String!){
+            sociofolio (where: {user: {_eq: $user}}) {
+              name
+              url
+            }
+          }`,
+          variables: {
+            user: localStorage.getItem("sub")
+          }
+        }),
+      })
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        console.log(data);
+        let urls = data.data.sociofolio;
+        for(let i=0;i<urls.length;i++){
+            if(urls[i].name in icons){
+                urls[i].icon=icons[urls[i].name];
+            }
+            else{
+                urls[i].icon=icons["default"];
+            }
+        }
+        this.setState({urls});
+      })
     }
 
     handleItemClick(){
@@ -53,27 +99,16 @@ class Index extends React.Component {
                     <Card.Meta>Joined in 2016</Card.Meta>
                     <Card.Description>
                         <List divided relaxed>
-                            <List.Item>
-                            <List.Icon name='github' size='large' verticalAlign='middle' />
-                            <List.Content>
-                                <List.Header as='a'>Semantic-Org/Semantic-UI</List.Header>
-                            </List.Content>
-                            </List.Item>
-
-                            <List.Item>
-                            <List.Icon name='github' size='large' verticalAlign='middle' />
-                            <List.Content>
-                                <List.Header as='a'>Semantic-Org/Semantic-UI</List.Header>
-                            </List.Content>
-                            </List.Item>
-
-                            <List.Item>
-                            <List.Icon name='github' size='large' verticalAlign='middle' />
-                            <List.Content>
-                                <List.Header as='a'>Semantic-Org/Semantic-UI</List.Header>
-                            </List.Content>
-                            </List.Item>
-                            
+                            {this.state.urls?this.state.urls.map((item)=>{
+                                return (
+                                    <List.Item>
+                                        <List.Icon name={item.icon} size='large' verticalAlign='middle' />
+                                        <List.Content>
+                                            <List.Header as='a' href={item.url}>{item.name}</List.Header>
+                                        </List.Content>
+                                    </List.Item>
+                                )
+                            }):""}
                         </List>
                     </Card.Description>
                     </Card.Content>

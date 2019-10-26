@@ -4,6 +4,8 @@ import Create from './pages/create';
 import './styles.css';
 import Auth from './auth/auth';
 import Callback from './pages/callback';
+import client from "./apollo";
+import { ApolloProvider } from "react-apollo";
 
 import {
   BrowserRouter as Router,
@@ -21,6 +23,7 @@ const handleAuthentication = (nextState, replace) => {
 
 const App = () => {
   return (
+    <ApolloProvider client={client}>
     <Switch>
             <Route exact path="/create" render={(props)=><Create auth={auth} {...props}/>}/>
             <Route path="/callback" render={(props) => {
@@ -29,6 +32,7 @@ const App = () => {
             }} />
             <Route exact path="/" component={Index}/>
     </Switch>
+    </ApolloProvider>
   )
 }
 
