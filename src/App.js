@@ -8,7 +8,7 @@ import client from "./apollo";
 import { ApolloProvider } from "react-apollo";
 import Config from './pages/config';
 import Profile from './pages/profile';
-import {  List, Card, Icon, Image, Menu,Container } from 'semantic-ui-react';
+import {  Segment, Header, Grid, Responsive , List, Card, Icon, Image, Menu,Container } from 'semantic-ui-react';
 import Page from './pages/page';
 import history from './history';
 
@@ -40,14 +40,18 @@ class App extends React.Component {
   }
 
   componentDidMount(){
+    console.log("LS",localStorage.getItem("sub"));
     if(localStorage.getItem("sub")){
       this.setState({loggedIn:true});
+    }
+    else{
+      this.setState({loggedIn:false});
     }
   }
 
   render(){
     return (
-      <>
+      <Responsive>
                 <Menu inverted stackable>
                   <Menu.Item>
                   <img src='https://cdn4.iconfinder.com/data/icons/logos-3/600/React.js_logo-512.png' />
@@ -108,7 +112,14 @@ class App extends React.Component {
                 </Switch>
                 </ApolloProvider>
               </Container>
-        </>
+              <Segment inverted vertical style={{ position:'absolute',bottom:0,width:"100%" }}>
+                <Container>
+                  <Grid centered style={{padding:"1%"}}>
+                        Made with ❤️ by aswinzz
+                  </Grid>
+                </Container>
+              </Segment>
+        </Responsive>
     )
   }
 }

@@ -22,9 +22,7 @@ class Index extends React.Component {
         const activeItem = "features";
         
         return (
-            <>
-                Hi
-            </>
+                "Hi"
         )
     }
 }
