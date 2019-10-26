@@ -1,5 +1,7 @@
 import React from 'react';
 import Index from './pages/index';
+import Create from './pages/create';
+import './styles.css';
 
 import {
   BrowserRouter as Router,
@@ -15,11 +17,12 @@ class App extends React.Component {
 
   render(){
     return (
-      <div className="App">
+      <>
           <Switch>
+            <Route exact path="/create" component={Create}/>
             <Route exact path="/" component={Index}/>
           </Switch>
-      </div>
+      </>
     )
   }
 }
