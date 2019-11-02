@@ -1,8 +1,8 @@
 # Sociofolio
 
-Sociofolio is a solution for sharing your multiple social networking sites handles with others, this lets you create a single page where all your links can be added and can be shared with others using a single url.
+Sociofolio is a solution for sharing your multiple social networking sites handles with others easily, this lets you create a single page where all your links can be added and can be shared with others using a single url.
 
-This projects is created using React and Hasura.
+This project is created using React and Hasura.
 
 
 Those who wish to contribute are welcome :smile: .
@@ -35,6 +35,6 @@ Anyone who wish to contribute to this repo can take up any issue and start solvi
 ## How to contribute?
   * First, verify if there's no one already working on solving the issue.
   * Star and Fork the repository to start working on it.
-  * Clone the repository in your local machine using $ git clone git@github.com:YOUR-GITHUB-USER-NAME/LucidCV.git
+  * Clone the repository in your local machine using $ git clone git@github.com:YOUR-GITHUB-USER-NAME/sociofolio.git
   * Visit your fork on (https://github.com/YOUR-USER-NAME/sociofolio) and create a pull request for your changes.
   * Make sure your pull request describes what you changed and references the issue that you're fixing.
