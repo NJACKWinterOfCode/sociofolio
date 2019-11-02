@@ -1,68 +1,40 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Sociofolio
 
-## Available Scripts
+Sociofolio is a solution for sharing your multiple social networking sites handles with others, this lets you create a single page where all your links can be added and can be shared with others using a single url.
 
-In the project directory, you can run:
+This projects is created using React and Hasura.
 
-### `yarn start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Those who wish to contribute are welcome :smile: .
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## How to setup locally
 
-### `yarn test`
+* run `git clone https://github.com/aswinzz/sociofolio.git`
+* Enter into the cloned folder
+* run `npm install`
+* run `npm start`
+* Go to `localhost:3000` in your browser
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## How It Works
 
-### `yarn build`
+- The user can login by going to the route `/login` which will let the user to either login or sign up using Auth0 client.
+- Once the user is Authenticated, user is directed to `/config` where the user can change the username which will be used as an identifier for the profile.
+- The user can add new links to his profile by going to the route `/create`
+- `/profile` will show the profile view of the currently logged in user.
+- Once a profile is configured, anyone can open the user's profile by going to `/username`, this will display all the links that the user has added.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- File Structure :
+  * The file `src/App.js` is the base file, where the layout of all the pages are present and different routes are defined.
+  * The folder `src/pages` contains different pages for the routes that are mentioned in App.js
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Happy Contributing 😊
+=======
+Anyone who wish to contribute to this repo can take up any issue and start solving issues. You can also create issues for the problems that you came across in the project.
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## How to contribute?
+  * First, verify if there's no one already working on solving the issue.
+  * Star and Fork the repository to start working on it.
+  * Clone the repository in your local machine using $ git clone git@github.com:YOUR-GITHUB-USER-NAME/LucidCV.git
+  * Visit your fork on (https://github.com/YOUR-USER-NAME/sociofolio) and create a pull request for your changes.
+  * Make sure your pull request describes what you changed and references the issue that you're fixing.
