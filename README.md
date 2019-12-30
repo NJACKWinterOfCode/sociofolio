@@ -19,7 +19,7 @@ Those who wish to contribute are welcome :smile: .
 
 - The user can login by going to the route `/login` which will let the user to either login or sign up using Auth0 client.
 - Once the user is Authenticated, user is directed to `/config` where the user can change the username which will be used as an identifier for the profile.
-- The user can add new links to his profile by going to the route `/create`
+- The user can add new links to his profile by going to the route `/create`.
 - `/profile` will show the profile view of the currently logged in user.
 - Once a profile is configured, anyone can open the user's profile by going to `/username`, this will display all the links that the user has added.
 
@@ -30,10 +30,10 @@ Those who wish to contribute are welcome :smile: .
 
 Happy Contributing 😊
 =======
-Anyone who wish to contribute to this repo can take up any issue and start solving issues. You can also create issues for the problems that you came across in the project.
+Anyone who wish to contribute to this repo can take up any issue and start solving issues. You can also create [new-issues](https://github.com/NJACKWinterOfCode/sociofolio/issues/new) for the problems that you came across in the project.
 
 ## How to contribute?
-  * First, verify if there's no one already working on solving the issue.
+  * First, verify if there's no one already working on solving the same issue.
   * Star and Fork the repository to start working on it.
   * Clone the repository in your local machine using $ git clone git@github.com:YOUR-GITHUB-USER-NAME/sociofolio.git
   * Visit your fork on (https://github.com/YOUR-USER-NAME/sociofolio) and create a pull request for your changes.
